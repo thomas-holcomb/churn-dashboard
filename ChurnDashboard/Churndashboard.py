@@ -12,12 +12,16 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import joblib
 from sklearn.metrics import classification_report, confusion_matrix, RocCurveDisplay, PrecisionRecallDisplay, roc_auc_score
+import os
 
+base = os.path.dirname(__file__)
+model_path = os.path.join(base, "my_model.pkl")
+encoded_path = os.path.join(base, "model_ready_data.parquet")
+merged_path = os.path.join(base, "merged_data.parquet")
 
-
-model = joblib.load("saved_model.pkl")
-encoded_df = pd.read_parquet("model_ready_data.parquet")
-merged_df = pd.read_parquet("merged_data.parquet")
+model = joblib.load(model_path)
+encoded_df = pd.read_parquet(encoded_path)
+merged_df = pd.read_parquet(merged_path)
 
 st.set_page_config(page_title="Customer Churn Dashboard", layout="wide")
 
